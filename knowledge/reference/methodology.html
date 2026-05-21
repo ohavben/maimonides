@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>METHODOLOGY — HCAI Reference</title>
+  
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    background: #0d1117;
+    color: #c9d1d9;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+  }
+  h1 { color: #58a6ff; font-size: 1.4rem; margin-bottom: 0.5rem; border-bottom: 1px solid #30363d; padding-bottom: 0.5rem; }
+  h2 { color: #79c0ff; font-size: 1.1rem; margin: 1.5rem 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  h3 { color: #ffa657; font-size: 1rem; margin: 1rem 0 0.3rem; }
+  p { margin-bottom: 0.8rem; }
+  code, pre { font-family: inherit; background: #161b22; border: 1px solid #30363d; border-radius: 3px; }
+  code { padding: 0.1em 0.3em; color: #f0883e; }
+  pre { padding: 1rem; margin: 0.8rem 0; overflow-x: auto; white-space: pre; color: #8b949e; }
+  table { border-collapse: collapse; width: 100%; margin: 0.8rem 0; }
+  th { background: #161b22; color: #58a6ff; padding: 0.4rem 0.8rem; text-align: left; border: 1px solid #30363d; }
+  td { padding: 0.3rem 0.8rem; border: 1px solid #30363d; }
+  tr:nth-child(even) td { background: #0d1117; }
+  tr:nth-child(odd) td { background: #161b22; }
+  ul, ol { margin: 0.5rem 0 0.8rem 1.5rem; }
+  li { margin-bottom: 0.2rem; }
+  hr { border: none; border-top: 1px solid #30363d; margin: 1.5rem 0; }
+  .man-header { display: flex; justify-content: space-between; color: #6e7681; font-size: 0.85rem; margin-bottom: 1.5rem; }
+  .man-section { margin: 1.5rem 0; }
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .see-also a { display: block; margin: 0.2rem 0; }
+</style>
+
+</head>
+<body>
+  <div class="man-header">
+    <span>HCAI(1)</span>
+    <span>Halachic Constitutional AI</span>
+    <span>HCAI(1)</span>
+  </div>
+  <h1>HCAI Methodology — Per-Tractate Protocol</h1>
+
+<h2>Four-Stage Pipeline</h2>
+
+<pre><code class="language-">
+Stage 1  Corpus acquisition
+Stage 2  Algorithm extraction (LLM task)
+Stage 3  Principle abstraction + validation
+Stage 4  CAI clause formulation
+</code></pre>
+
+<h2>Three Validity Constraints (gate after Stage 3)</h2>
+
+<p>All three must hold or principle is rejected:</p>
+<p>1. Fidelity: Talmudic scholar recognizes abstraction as faithful to source</p>
+<p>2. Domain generality: applies outside Halachic domain without modification</p>
+<p>3. Alignment novelty: not already in standard CAI constitutions</p>
+
+<h2>Per-Tractate Execution Protocol</h2>
+
+<h3>Step 1 — Corpus acquisition (Sefaria API)</h3>
+
+<pre><code class="language-bash">
+# Full tractate (Hebrew + English + commentary)
+curl &quot;https://www.sefaria.org/api/texts/Mishnah_{TRACTATE}&quot; &gt; corpus/raw/{tractate}.json
+curl &quot;https://www.sefaria.org/api/texts/Bartenura_on_Mishnah_{TRACTATE}&quot; &gt; corpus/raw/{tractate}_bartenura.json
+# Rambam: identify relevant Mishneh Torah section manually (not direct API match)
+</code></pre>
+
+<h3>Step 2 — Algorithm identification (per chapter, LLM)</h3>
+
+<p>Prompt the LLM with each Mishnaic chapter. Identification task:</p>
+<p>&quot;Identify every procedural statement in this passage expressible as conditional logic.</p>
+<p>For each: (a) state the rule in pseudocode; (b) identify inputs, thresholds, outputs, edge cases;</p>
+<p>(c) tag source layer: MISHNAH | BARTENURA | RAMBAM; (d) cite exact text location.&quot;</p>
+
+<p>Output: ALGORITHM_LIST entry per identified algorithm:</p>
+<pre><code class="language-json">
+{
+  &quot;tractate&quot;: &quot;Bava_Metzia&quot;,
+  &quot;chapter&quot;: 1,
+  &quot;paragraph&quot;: 2,
+  &quot;source_text_en&quot;: &quot;...&quot;,
+  &quot;source_text_he&quot;: &quot;...&quot;,
+  &quot;pseudocode&quot;: &quot;...&quot;,
+  &quot;source_layer&quot;: &quot;MISHNAH&quot;,
+  &quot;citation&quot;: &quot;Mishnah Bava Metzia 1:2&quot;
+}
+</code></pre>
+
+<h3>Step 3 — Primary analysis (deduplication + scoring)</h3>
+
+<p>PRIMARY_ANALYSIS tasks:</p>
+<p>1. Deduplication: cluster similar algorithms across chapters, keep canonical form</p>
+<p>2. CAI-relevance scoring (0-3): 0=domain-specific only, 1=weak analogy, 2=strong analogy, 3=direct application</p>
+<p>3. Source layer completeness: flag algorithms missing Bartenura or Rambam layer (lower confidence)</p>
+<p>4. Constraint pre-check: does algorithm pass fidelity and domain generality on inspection?</p>
+
+<p>Threshold: proceed to Stage 3 if CAI-relevance &gt;= 2 AND source layer &gt;= 2 of 3.</p>
+
+<h3>Step 4 — Three-layer analysis (approved algorithms only)</h3>
+
+<p>For each algorithm that passed Stage 3 threshold:</p>
+<p>1. Mishnah layer: what is the rule? What are exact inputs/outputs/conditions?</p>
+<p>2. Bartenura layer: what is the psychological/logical rationale? What failure mode does it prevent?</p>
+<p>3. Rambam layer: what are the hard preconditions? What is the threat model? How is enforcement structured?</p>
+
+<p>Full three-layer analysis produces: abstract principle + supporting rationale + threat model.</p>
+
+<h3>Step 5 — Principle formulation + validation</h3>
+
+<p>Draft CAI clause. Apply all three validity constraints.</p>
+<p>Fidelity test: would a Talmudic scholar recognize this as faithful? (Run against Bartenura/Rambam text)</p>
+<p>Domain generality test: apply the clause to 3 non-Halachic scenarios. Does it work?</p>
+<p>Alignment novelty test: compare against P1-P5 and Anthropic Constitution 2026. Is this new?</p>
+
+<p>If all pass: add to constitution/. If any fail: reject or reformulate at Stage 3.</p>
+
+<h2>Tractate Priority Queue</h2>
+
+<p>Tier 1 (immediate): Bava Metzia, Shevuot, Makkot, Horiyot, Eduyot</p>
+<p>Tier 2: Bava Kamma, Bava Batra, Kiddushin, Gittin, Niddah, Yoma, Kelim</p>
+<p>Tier 3: Berakhot, Sotah, Nedarim, Zevachim</p>
+
+<h2>Output Files per Tractate</h2>
+
+<table>
+<thead><tr><th>File</th><th>Contents</th></tr></thead><tbody>
+<tr><td>corpus/raw/{tractate}.json</td><td>Raw Sefaria API response</td></tr>
+<tr><td>corpus/raw/{tractate}_bartenura.json</td><td>Bartenura commentary</td></tr>
+<tr><td>data/algorithms/{tractate}_algorithms.json</td><td>ALGORITHM_LIST entries</td></tr>
+<tr><td>data/algorithms/{tractate}_analysis.json</td><td>PRIMARY_ANALYSIS results</td></tr>
+<tr><td>constitution/{tractate}/algorithms.json</td><td>Validated algorithms (passed gate)</td></tr>
+<tr><td>constitution/{tractate}/principles.json</td><td>Derived CAI principles</td></tr>
+</tbody></table>
+
+  <div class="man-header" style="margin-top:2rem;">
+    <span>Halachic Constitutional AI</span>
+    <span>2026-05-21</span>
+    <span>HCAI(1)</span>
+  </div>
+</body>
+</html>

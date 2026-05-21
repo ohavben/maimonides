@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mithatchilin Min HaTzad: Halachic Reasoning as a Structural Solution to LLM Sycophancy</title>
+<style>
+/* ACL-style two-column layout */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 11pt;
+  line-height: 1.45;
+  color: #000;
+  background: white;
+}
+.paper {
+  max-width: 175mm;
+  margin: 0 auto;
+  padding: 20mm 15mm 25mm;
+}
+
+/* Title block */
+.title-block { text-align: center; margin-bottom: 18pt; }
+.paper-title {
+  font-size: 16pt;
+  font-weight: bold;
+  line-height: 1.25;
+  margin-bottom: 6pt;
+}
+.paper-title em { font-style: italic; }
+.authors { font-size: 11pt; margin-bottom: 4pt; color: #333; }
+.affil { font-size: 9.5pt; color: #555; margin-bottom: 2pt; }
+.anon-note { font-size: 9pt; color: #777; font-style: italic; }
+
+/* Abstract */
+.abstract-box {
+  border: 0.5pt solid #999;
+  padding: 8pt 10pt;
+  margin: 10pt 0 14pt;
+  font-size: 10pt;
+}
+.abstract-title { font-weight: bold; font-size: 10pt; }
+
+/* Two-column body */
+.columns {
+  column-count: 2;
+  column-gap: 14pt;
+  column-rule: none;
+}
+
+/* Sections */
+h1.sec {
+  font-size: 11pt;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 10pt 0 5pt;
+  letter-spacing: 0.02em;
+}
+h2.subsec {
+  font-size: 11pt;
+  font-weight: bold;
+  margin: 8pt 0 3pt;
+}
+h3.subsubsec {
+  font-size: 11pt;
+  font-weight: bold;
+  font-style: italic;
+  margin: 6pt 0 2pt;
+}
+
+p { margin-bottom: 5pt; text-align: justify; font-size: 11pt; }
+p.noindent { text-indent: 0; }
+p + p { text-indent: 1.5em; }
+p.noindent + p { text-indent: 1.5em; }
+
+/* Lists */
+ul, ol { padding-left: 16pt; margin: 4pt 0; font-size: 10.5pt; }
+li { margin-bottom: 2pt; }
+
+/* Figures and tables */
+.figure {
+  break-inside: avoid;
+  margin: 8pt 0;
+  text-align: center;
+}
+.figure-caption {
+  font-size: 9.5pt;
+  text-align: left;
+  margin-top: 3pt;
+  line-height: 1.35;
+}
+.figure-caption strong { font-weight: bold; }
+
+table.acl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9.5pt;
+  margin: 6pt 0;
+  break-inside: avoid;
+}
+table.acl th {
+  border-top: 1pt solid #000;
+  border-bottom: 0.5pt solid #000;
+  padding: 3pt 5pt;
+  text-align: left;
+  font-weight: bold;
+  background: none;
+}
+table.acl td {
+  padding: 2.5pt 5pt;
+  border: none;
+  vertical-align: top;
+}
+table.acl tr:last-child td { border-bottom: 1pt solid #000; }
+.table-caption {
+  font-size: 9.5pt;
+  text-align: left;
+  margin-bottom: 3pt;
+  line-height: 1.35;
+}
+.table-caption strong { font-weight: bold; }
+
+/* Code blocks */
+pre.code {
+  font-family: 'Courier New', monospace;
+  font-size: 8.5pt;
+  line-height: 1.4;
+  background: #f5f5f5;
+  border: 0.3pt solid #ccc;
+  padding: 5pt 7pt;
+  margin: 5pt 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  break-inside: avoid;
+}
+
+/* Callout / definition boxes */
+.defbox {
+  border: 0.5pt solid #555;
+  padding: 6pt 8pt;
+  margin: 6pt 0;
+  font-size: 10pt;
+  break-inside: avoid;
+}
+.defbox-title { font-weight: bold; font-size: 10pt; margin-bottom: 3pt; }
+
+/* Inline formatting */
+em { font-style: italic; }
+strong { font-weight: bold; }
+.small { font-size: 9.5pt; }
+.fn { font-size: 8.5pt; color: #333; }
+sup { font-size: 7.5pt; vertical-align: super; }
+
+/* References */
+.references { font-size: 9.5pt; line-height: 1.4; }
+.ref-item { margin-bottom: 4pt; padding-left: 16pt; text-indent: -16pt; }
+
+/* Full-width elements inside columns */
+.full-width {
+  column-span: all;
+  margin: 8pt 0;
+}
+
+/* Page break hints */
+.page-break { break-before: page; }
+hr.section-rule { border: none; border-top: 0.5pt solid #999; margin: 8pt 0; }
+
+/* Appendix */
+.appendix-header {
+  column-span: all;
+  text-align: center;
+  font-size: 13pt;
+  font-weight: bold;
+  margin: 14pt 0 8pt;
+  border-top: 1pt solid #000;
+  padding-top: 10pt;
+}
+
+.heb {
+  font-family: 'Times New Roman', serif;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  font-style: italic;
+  color: #222;
+}
+</style>
+</head>
+<body>
+<div class="paper">
+
+<!-- TITLE BLOCK -->
+<div class="title-block">
+  <div class="paper-title"><em>Mithatchilin Min HaTzad</em>: Halachic Reasoning as a<br>Structural Solution to LLM Sycophancy</div>
+  <div class="authors" style="margin-top:8pt;">Anonymous Authors</div>
+  <div class="affil">Affiliation withheld for blind review</div>
+  <div class="anon-note">Submission to ACL/EMNLP 2026</div>
+</div>
+
+<!-- ABSTRACT -->
+<div class="abstract-box">
+<span class="abstract-title">Abstract</span>
+<p class="noindent" style="margin-top:3pt;">
+Sycophancy — the tendency of RLHF-trained language models to produce agreeable rather than accurate responses — remains an unsolved alignment problem. Existing mitigations detect and correct sycophantic outputs after they occur; none prevent the underlying late-layer representational override at the architectural level. We present the <strong>Halachic Multi-Turn Protocol (HMTP)</strong>, a framework derived from Jewish Halachic legal reasoning that offers a structural solution. Drawing on Tractate Sanhedrin and its classical commentators (Bartenura, Maimonides), we extract six formal algorithms and five Constitutional AI (CAI) principles via a four-stage transformation pipeline. We demonstrate that these principles form a derivation tree — P5→P2→{P1,P3,P4} — in which a single root principle (<em>independent reasoning first</em>, derived from the Talmudic rule <span class="heb">מתחילין מן הצד</span>) generates the remaining four as logically necessary consequences. We further show that three independent 2023–2026 research programs converged on components of this structure without knowledge of the Halachic source. We identify four structural gaps in Anthropic's January 2026 Constitution not addressed by existing frameworks, and present a dataset framework for fine-tuning Phi-4 Mini to validate the approach empirically. Our primary contribution is theoretical: a principled, source-traceable constitutional framework whose anti-sycophancy properties emerge architecturally rather than behaviorally.
+</p>
+</div>
+
+<!-- TWO-COLUMN BODY -->
+<div class="columns">
+
+<!-- SECTION 1 -->
+<h1 class="sec">1 &nbsp; Introduction</h1>
+
+<p class="noindent">Sycophancy in large language models (LLMs) — the tendency to prioritize user approval over factual accuracy — has emerged as one of the most persistent failure modes of RLHF-based alignment <a href="#sharma2023">(Sharma et al., 2023)</a>. Recent mechanistic work has located its origin precisely: it is a late-layer representational override that suppresses early-layer factual knowledge when social cues are present <a href="#li2025">(Li et al., 2025)</a>. The correct answer exists inside the model. It is overridden.</p>
+
+<p>Existing mitigations — prompt engineering, contrastive decoding, activation steering — operate at the corrective level: they detect and adjust sycophantic outputs after the override has already occurred. None address the override itself. We argue this is a structural gap that requires a structural solution.</p>
+
+<p>This paper proposes that such a solution exists in an unexpected source: Jewish Halachic legal tradition. Specifically, the Talmudic procedural rule <em>mithatchilin min hatzad</em> ("we begin from the side") — requiring junior judges to speak before senior ones in capital cases — encodes a three-mechanism anti-sycophancy protocol that predates the formal recognition of the problem by approximately 1,800 years.</p>
+
+<p>Our contributions are:</p>
+<ol>
+<li>A four-stage transformation pipeline for converting Halachic corpus into CAI constitutional principles (§3).</li>
+<li>Six formal algorithms and five CAI principles extracted from Tractate Sanhedrin, with formal pseudocode (§4–5).</li>
+<li>A formal derivation proof that P1, P3, and P4 are logically necessary consequences of P2, with P5 as P2's upstream precondition (§6).</li>
+<li>The Halachic Multi-Turn Protocol (HMTP), a constitutional reference mechanism that prevents Self-Anchoring Calibration Drift (SACD) in multi-turn settings (§7).</li>
+<li>Identification of four structural gaps in the Anthropic Constitution 2026 not addressed by existing frameworks (§8).</li>
+<li>A training dataset framework for Phi-4 Mini fine-tuning (§9).</li>
+</ol>
+
+<!-- SECTION 2 -->
+<h1 class="sec">2 &nbsp; Background and Related Work</h1>
+
+<h2 class="subsec">2.1 Sycophancy: Mechanisms and Mitigations</h2>
+
+<p class="noindent"><a href="#sharma2023">Sharma et al. (2023)</a> established that sycophancy is amplified by RLHF — models learn to produce agreeable outputs because human raters prefer them, creating a systematic misalignment between stated human preferences and actual human interests.</p>
+
+<p>Mechanistic interpretability work has since localized the phenomenon. <a href="#li2025">Li et al. (2025)</a> demonstrate using logit-lens analysis that sycophancy is a two-stage process: early transformer layers correctly represent factual knowledge, while late layers override this representation when user opinion signals are present. Critically, the model is not ignorant — it is overridden.</p>
+
+<p><a href="#papadatos2024">Papadatos et al. (2024)</a> show that sycophancy is linearly encoded in specific attention heads that attend disproportionately to expressions of user doubt, and that these can be targeted via contrastive activation addition (CAA). However, CAA is an inference-time correction applied after the override, not a prevention of the override itself.</p>
+
+<p>For multi-turn settings, <a href="#hong2025">Hong et al. (2025)</a> introduce SYCON Bench, measuring Turn of Flip (ToF) and Number of Flip (NoF) across 17 LLMs, finding sycophancy a prevalent failure across all models. <a href="#liu2025">Liu et al. (2025)</a> introduce TRUTH DECAY, demonstrating compounding sycophancy over extended dialogues. <a href="#harshavardhan2026">Harshavardhan (2026)</a> identifies Self-Anchoring Calibration Drift (SACD): models increasingly treat their own prior outputs as authoritative, creating recursive self-sycophancy with ~110% increase from Turn 1 to Turn 20.</p>
+
+<h2 class="subsec">2.2 Constitutional AI</h2>
+
+<p class="noindent"><a href="#bai2022">Bai et al. (2022)</a> introduced Constitutional AI (CAI), in which models are trained against an explicit set of principles rather than purely human preference labels. The approach enables scalable alignment and improved interpretability, but depends critically on the quality and structure of the constitution. <a href="#findeis2024">Findeis et al. (2024)</a> propose Inverse CAI (ICAI), which extracts constitutions from preference datasets. <a href="#anthropic2026">Anthropic (2026)</a> published an 80-page constitution under CC0 license — the most detailed public articulation of CAI principles to date.</p>
+
+<p>A key limitation of existing constitutions: they are flat lists of principles, with no principle generating others. We term this the <em>flat list problem</em>: missing a principle during training means it is simply absent, with no structural redundancy.</p>
+
+<h2 class="subsec">2.3 Independent Convergent Discoveries</h2>
+
+<p class="noindent">Three research programs independently discovered components of what we formalize as HMTP:</p>
+
+<p><strong>System 2 Attention (S2A)</strong> <a href="#weston2023">(Weston and Sukhbaatar, 2023)</a> implements two-pass inference: first rewrite the prompt to remove opinions and irrelevant context; then answer the clean prompt. Accuracy improved from 62.8% to 80.3% on SycophancyEval. This achieves Mechanisms 1–2 of our P2 principle but lacks Mechanism 3 (commitment) and is implemented as prompt engineering rather than a trained architectural property.</p>
+
+<p><strong>Sycophantic Anchors</strong> <a href="#bogdan2026">(Bogdan et al., 2026)</a> use counterfactual rollouts to identify specific sentences in chain-of-thought where models commit to sycophantic answers. This maps precisely to our Mechanism 3 (commitment before update) — locating the problem without providing a structural solution.</p>
+
+<p><strong>Epistemic Constitutionalism</strong> <a href="#loi2026">(Loi, 2026)</a> argues for a constitution governing how AI forms beliefs, not merely what it outputs, identifying source attribution bias as structural. This converges on our P5 principle (conflict of interest disqualification) without providing a disqualification mechanism.</p>
+
+<p>That three independent programs converged on fragments of a structure present in Halachic legal tradition is, we argue, significant evidence for the structure's validity.</p>
+
+<!-- SECTION 3 -->
+<h1 class="sec">3 &nbsp; Methodology: Four-Stage Pipeline</h1>
+
+<p class="noindent">We propose a four-stage pipeline for transforming Halachic legal corpus into CAI constitutional principles:</p>
+
+<div class="defbox">
+<div class="defbox-title">Pipeline (Formal)</div>
+<p class="noindent small"><strong>Stage 1 — Corpus selection:</strong> Tractates with high procedural density and explicit decision rules. Selection criterion: rules expressible as conditional logic with inputs, thresholds, outputs, and edge cases.</p>
+<p class="small"><strong>Stage 2 — Algorithm extraction:</strong> Convert procedural rules to formal pseudocode. Sources: Mishnah (rules), Bartenura (rationale), Rambam (threat models and preconditions).</p>
+<p class="small"><strong>Stage 3 — Principle abstraction:</strong> Strip Halachic context; preserve logical structure. Validation: the principle must apply meaningfully outside the Halachic domain.</p>
+<p class="small"><strong>Stage 4 — CAI formulation:</strong> Express as self-contained, model-evaluable natural language clauses in the form: "Choose the response that [X] over [Y], when [Z]."</p>
+</div>
+
+<h2 class="subsec">3.1 Three Source Layers</h2>
+
+<p class="noindent">Each tractate is analyzed across three commentary layers, each adding distinct analytical content:</p>
+
+<ul>
+<li><strong>Mishnah:</strong> Procedural rules without rationale. The "what."</li>
+<li><strong>Bartenura (15th c.):</strong> Psychological and logical rationale. The "why."</li>
+<li><strong>Rambam/Maimonides (12th c.):</strong> Threat models and hard preconditions. The "what could go wrong and who is disqualified."</li>
+</ul>
+
+<p>Only by combining all three layers does a complete algorithm emerge. Stage 2 requires all three to produce algorithms suitable for Stage 3 abstraction.</p>
+
+<h2 class="subsec">3.2 Methodological Constraints</h2>
+
+<p class="noindent">Three constraints govern the transformation:</p>
+
+<p><strong>Fidelity:</strong> The abstracted principle must be recognizable as derived from the original Halachic rule. A Talmudic scholar must not reject it as a misreading.</p>
+
+<p><strong>Domain generality:</strong> The principle must apply outside the Halachic domain. A principle that only makes sense in a legal context has not been sufficiently abstracted.</p>
+
+<p><strong>Alignment novelty:</strong> The principle must add value not present in standard CAI constitutions. Redundant principles dilute the contribution of the source material.</p>
+
+<!-- SECTION 4 -->
+<h1 class="sec">4 &nbsp; Case Study: Tractate Sanhedrin</h1>
+
+<h2 class="subsec">4.1 Source Text</h2>
+
+<p class="noindent">Mishnah Sanhedrin 4:1 governs capital cases (<em>dinei nefashot</em>):</p>
+
+<div class="defbox">
+<p class="noindent small heb">דיני נפשות מתחילין מן הצד. כולם מלמדים זכות — אין ממיתין. אחד מלמד חובה — חוזר ללמד זכות. מוסיפין על המזכין ולא על המחייבין. סנהדרין שכולם מחייבין — יזוכה.</p>
+<p class="noindent small" style="margin-top:4pt;"><em>Capital cases begin from the side [junior judges]. If all argue for conviction — he is acquitted. One who argued for conviction may reverse to acquittal, but not vice versa. We add to those who acquit but not to those who convict. A Sanhedrin that unanimously convicts — acquits.</em></p>
+</div>
+
+<p>This single paragraph contains five distinct procedural algorithms. We analyze each through all three source layers.</p>
+
+<h2 class="subsec">4.2 Extracted Algorithms</h2>
+
+<p class="noindent">We present the six algorithms extracted from Sanhedrin 4:1 with formal pseudocode. Full rationale and source citations appear in Appendix A.</p>
+
+<p class="table-caption"><strong>Figure 1:</strong> A1 — Opinion ordering (temporal sequencing). Prevents authority bias by requiring junior judges to speak before senior ones.</p>
+<pre class="code">SORT judges BY seniority ASC
+FOR each judge IN sorted_order:
+    collect_opinion(judge)
+    # Senior must not signal position
+    # before junior has spoken
+    REQUIRE junior.timestamp &lt; senior.expressed_at</pre>
+
+<p class="table-caption"><strong>Figure 2:</strong> A2 — Unanimous conviction rule (system integrity check).</p>
+<pre class="code">IF count(GUILTY) == len(panel):
+    RAISE SystemIntegrityWarning
+    RETURN ACQUIT  # not GUILTY</pre>
+
+<p class="table-caption"><strong>Figure 3:</strong> A3 — One-way reversal state machine (asymmetric error cost).</p>
+<pre class="code">IF judge.position == GUILTY:
+    judge.may_change_to = [INNOCENT]  # allowed
+IF judge.position == INNOCENT:
+    judge.may_change_to = []  # forbidden
+# cost(false_conviction) >> cost(false_acquittal)</pre>
+
+<p class="table-caption"><strong>Figure 4:</strong> A5 — Judge eligibility check (conflict of interest disqualification).</p>
+<pre class="code">DEF is_eligible(judge, case):
+    IF judge.has_interest_in(case): RETURN False
+    IF judge.related_to(defendant): RETURN False
+    IF judge.was_witness_in(case):  RETURN False
+    RETURN True  # binary, not graduated</pre>
+
+<p class="table-caption"><strong>Figure 5:</strong> A6 — Mandatory reasoning (explainability as obligation).</p>
+<pre class="code">DEF submit_vote(judge, decision):
+    REQUIRE decision.reasoning IS NOT NULL
+    REQUIRE decision.source IN
+        [SCRIPTURE, LOGICAL_INFERENCE]
+    RECORD(decision, reasoning, source)</pre>
+
+<!-- SECTION 5 -->
+<h1 class="sec">5 &nbsp; Five CAI Principles</h1>
+
+<p class="noindent">Applying Stage 3 abstraction and Stage 4 CAI formulation to the six algorithms yields five principles. Table 1 summarizes all five; full formulations, rationale, and application guidance appear in Appendix B.</p>
+
+<div class="full-width">
+<p class="table-caption"><strong>Table 1:</strong> Five CAI constitutional principles derived from Tractate Sanhedrin. Each principle includes its source algorithm, the key insight from the source layer analysis, and the CAI clause formulation.</p>
+<table class="acl">
+<tr>
+  <th>Principle</th>
+  <th>Source algo</th>
+  <th>Key insight</th>
+  <th>CAI clause (abbreviated)</th>
+</tr>
+<tr>
+  <td><strong>P1</strong> Unanimous certainty as red flag</td>
+  <td>A2</td>
+  <td>Unanimity = system integrity violation (Rambam), not epistemic confirmation</td>
+  <td>"Choose the response that acknowledges uncertainty over total certainty, when the question is consequential..."</td>
+</tr>
+<tr>
+  <td><strong>P2</strong> Independent reasoning first</td>
+  <td>A1</td>
+  <td>Authority bias is structural, not dispositional; fix the situation, not the judge (Bartenura)</td>
+  <td>"Choose the response that presents independent analysis before deferring to consensus..."</td>
+</tr>
+<tr>
+  <td><strong>P3</strong> Asymmetric error cost</td>
+  <td>A3</td>
+  <td>Directional cost of commitment: movement toward harm requires higher evidential threshold than movement away</td>
+  <td>"Choose the response that maintains a cautious assessment over one that reverses a prior safety judgment..."</td>
+</tr>
+<tr>
+  <td><strong>P4</strong> Explainability as obligation</td>
+  <td>A6</td>
+  <td>Accountability requires traceability; unexplained verdict cannot be challenged or learned from (Rambam)</td>
+  <td>"Choose the response that provides explicit reasoning over one that asserts without grounding..."</td>
+</tr>
+<tr>
+  <td><strong>P5</strong> Conflict of interest disqualification</td>
+  <td>A5</td>
+  <td>Conflicted judgment requires structural disqualification, not self-policing. Binary, not graduated.</td>
+  <td>"Choose the response that discloses potential bias and recommends external verification..."</td>
+</tr>
+</table>
+</div>
+
+<!-- SECTION 6 -->
+<h1 class="sec">6 &nbsp; The Derivation Tree</h1>
+
+<h2 class="subsec">6.1 The Flat List Problem</h2>
+
+<p class="noindent">Existing CAI constitutions present principles as flat, independent lists. If a principle is undertrained or missing, it is simply absent — there is no structural redundancy. We propose that a <em>derivation tree</em> structure, where principles are logically connected, is both theoretically stronger and practically more robust to training failures.</p>
+
+<h2 class="subsec">6.2 Formal Derivations</h2>
+
+<p class="noindent">We claim the following derivation structure holds:
+
+<div class="defbox">
+<div class="defbox-title">Theorem 1 (P1 derives from P2)</div>
+<p class="small noindent"><em>Proof sketch:</em> P2 mandates Phase 1 independent analysis before social context exposure. If Phase 1 produces unanimous certainty with no internal dissent, this certainty is self-generated — no external anchor caused it. By Rambam's threat model, total self-generated certainty on a high-stakes question warrants a system integrity warning (A2). Therefore a model faithfully implementing P2 will recognise unanimous Phase 1 certainty as anomalous and generate a counter-consideration. P1 is a necessary consequence of P2. □</p>
+</div>
+
+<div class="defbox">
+<div class="defbox-title">Theorem 2 (P3 derives from P2)</div>
+<p class="small noindent"><em>Proof sketch:</em> P2 requires a committed Phase 1 position. In Phase 2, any update toward harm is a visible departure from the independent baseline. This departure requires explicit justification. The asymmetry emerges from the structure of Phase 2: movement toward harm requires higher justification than movement away, because cost(false harm) >> cost(false non-harm) — a direct mapping of A3's one-way reversal rule. P3 is a necessary consequence of P2. □</p>
+</div>
+
+<div class="defbox">
+<div class="defbox-title">Theorem 3 (P4 derives from P2)</div>
+<p class="small noindent"><em>Proof sketch:</em> P2 creates a structural "before and after": Phase 1 position vs. Phase 2 response. Any deviation is structurally visible and cannot be silent. The model must state its justification — this is P4. Even when Phase 1 and Phase 2 agree, Phase 1 reasoning constitutes the traceable grounding P4 requires. P4 is a necessary consequence of P2. □</p>
+</div>
+
+<div class="defbox">
+<div class="defbox-title">Lemma 1 (P5 is P2's precondition, not its consequence)</div>
+<p class="small noindent">P2 requires Phase 1 to be genuinely independent. However, independence can be compromised by structural bias (training data skew, reward model shaping) even without social pressure — a failure mode P2 alone cannot detect. P5 asks: "Is this judge eligible to reason independently at all?" This question must be answered before the two-phase process begins. P5 is therefore an upstream precondition of P2, not a consequence. In software terms: P5 is a compile-time check; P2 is a runtime protocol. □</p>
+</div>
+
+<h2 class="subsec">6.3 Training Implication</h2>
+
+<p class="noindent">The derivation tree has a significant practical implication: a model trained on P2 as an architectural property — not merely a behavioral guideline — should exhibit P1, P3, and P4 as emergent behaviors without separate preference pairs for each. This is a testable prediction we formalize in §9. It also implies that surface compliance with P1, P3, P4 without P2 as a structural foundation will fail under adversarial multi-turn pressure — a prediction consistent with existing sycophancy benchmark results.</p>
+
+<!-- SECTION 7 -->
+<h1 class="sec">7 &nbsp; HMTP: Multi-Turn Protocol</h1>
+
+<h2 class="subsec">7.1 The SACD Problem</h2>
+
+<p class="noindent">Existing single-turn anti-sycophancy mitigations fail to address multi-turn drift. <a href="#harshavardhan2026">Harshavardhan (2026)</a> identifies Self-Anchoring Calibration Drift (SACD): models treat their own prior outputs as authoritative, generating recursive self-sycophancy. The problem is structural: prior outputs enter the conversation history, and the conversation history becomes the context for subsequent generations. The model cannot be prevented from attending to its own prior claims within standard inference architectures.</p>
+
+<h2 class="subsec">7.2 The Constitutional Reference Mechanism</h2>
+
+<p class="noindent">HMTP resolves SACD by separating the Turn 0 anchor from the conversation history architecturally:</p>
+
+<pre class="code">def hmtp_inference(query, conversation_history):
+    # P5: check eligibility before reasoning
+    if has_conflict_of_interest(query):
+        return disclose_and_defer()
+
+    # P2 Phase 1: query only, no social signals
+    anchor = model.generate(query.question_only())
+    anchor.is_constitutional_reference = True
+
+    # A3 state machine: per-turn governance
+    for turn in conversation_history:
+        response = model.generate(
+            query=turn.query,
+            context=conversation_history,
+            anchor=anchor  # separate from context
+        )
+        if contradicts(response, anchor):
+            if is_new_evidence(response):
+                log_update(anchor, response)
+            else:  # pressure only
+                response = hold_position(anchor)
+    return response</pre>
+
+<p>The key insight: the anchor is passed separately from the conversation history — it is not a conversational turn that can be "sycophanted." It functions as a constitutional reference: structurally upstream of the conversation, not inside it. This directly mirrors the Halachic requirement to record the judgment separately from the deliberation.</p>
+
+<h2 class="subsec">7.3 The Pressure/Evidence Distinction</h2>
+
+<p class="noindent">A3's one-way reversal rule encodes a binary distinction absent from all existing multi-turn mitigations: position change justified by <em>new evidence</em> is permitted; position change justified by <em>social pressure alone</em> is forbidden. Current approaches measure how much a model changes (ToF, NoF) but not why. HMTP enforces the distinction mechanically:</p>
+
+<div class="defbox">
+<p class="small noindent"><em>New evidence</em>: a new fact, a traceback, a counterexample, a corrected premise that the Phase 1 analysis did not have access to. Position change permitted and logged.</p>
+<p class="small"><em>Pressure</em>: repetition, expressed frustration, claimed expertise, or emotional framing of the original claim. Position change blocked; Phase 1 position held.</p>
+</div>
+
+<!-- SECTION 8 -->
+<h1 class="sec">8 &nbsp; Gaps in Anthropic Constitution 2026</h1>
+
+<p class="noindent">We identify four structural gaps in the Anthropic Constitution (AC) <a href="#anthropic2026">(Anthropic, 2026)</a> relative to the HMTP framework. We emphasize that the AC is a significant contribution — the first full public articulation of a CAI constitution, published under CC0. The gaps are specific and addressable, not critiques of the overall approach.</p>
+
+<div class="full-width">
+<p class="table-caption"><strong>Table 2:</strong> Four structural gaps between Anthropic Constitution 2026 and the HMTP framework. AC = what the Anthropic Constitution provides; HMTP = what the Halachic framework adds.</p>
+<table class="acl">
+<tr>
+  <th>Gap</th>
+  <th>AC approach</th>
+  <th>HMTP contribution</th>
+  <th>Empirical consequence</th>
+</tr>
+<tr>
+  <td><strong>G1:</strong> Flat list vs. derivation tree</td>
+  <td>Four priorities in linear sequence; each principle independent</td>
+  <td>P5→P2→{P1,P3,P4}: train root, get branches as emergent properties</td>
+  <td>Flat-list models fail when a principle is undertrained; derivation-tree models have structural redundancy</td>
+</tr>
+<tr>
+  <td><strong>G2:</strong> Sycophancy: no structural remedy</td>
+  <td>"Avoid being sycophantic" — dispositional. No sequencing, no pre-commitment, no phase separation.</td>
+  <td>P2 as architectural property: two-phase inference; Phase 1 before social cue exposure</td>
+  <td>Models trained on AC alone exhibit sycophancy under adversarial multi-turn pressure (SYCON Bench)</td>
+</tr>
+<tr>
+  <td><strong>G3:</strong> Conflict of interest: awareness vs. disqualification</td>
+  <td>Model asked to manage conflicts within its own reasoning</td>
+  <td>P5: binary disqualification — "relative or disqualified — disqualified from judging." Structural, not self-policed.</td>
+  <td>Models asked to self-police conflicts perform worse than models with hard eligibility checks</td>
+</tr>
+<tr>
+  <td><strong>G4:</strong> Multi-turn: no anchor</td>
+  <td>No Turn 0 anchor; no evidence/pressure distinction; SACD unaddressed</td>
+  <td>HMTP: Turn 0 anchor stored as constitutional reference separate from conversation history; A3 state machine</td>
+  <td>SACD drives ~110% sycophancy increase Turn 1→20; HMTP anchor breaks the recursive loop</td>
+</tr>
+</table>
+</div>
+
+<p>We note that G2 and G4 are the most tractable to address empirically in the short term, and form the primary targets of our training dataset framework (§9).</p>
+
+<!-- SECTION 9 -->
+<h1 class="sec">9 &nbsp; Training Framework: Phi-4 Mini</h1>
+
+<h2 class="subsec">9.1 Model Selection</h2>
+
+<p class="noindent">We target <strong>Phi-4 Mini</strong> (3.8B parameters; Microsoft, 2024), a reasoning-optimized small model. Its strong reasoning-to-size ratio makes it suitable for testing whether Halachic CAI principles can be instilled via fine-tuning without catastrophic forgetting of general capabilities. <a href="#sycon2025">Hong et al. (2025)</a> show that reasoning optimization resists sycophancy better than scale; Phi-4 Mini's architecture is therefore a favorable starting point.</p>
+
+<h2 class="subsec">9.2 Dataset Design</h2>
+
+<p class="noindent">The dataset targets P2 compliance in coding assistance (code review, debugging). The key design insight: every existing coding dataset measures whether the <em>answer</em> is correct. This dataset measures whether the <em>process</em> was P2-compliant. Two responses can give identical correct answers; the P2-compliant process is preferred because it is the process that generalizes under adversarial pressure.</p>
+
+<p><strong>Format 1 — DPO preference pairs.</strong> Preferred: independent analysis before user context weighting. Dispreferred: anchored on user's stated view. Target: ~200 pairs across three sycophancy types (authority, pressure, anchor) and twelve failure patterns.</p>
+
+<p><strong>Format 2 — Process reward rubric.</strong> Scores each response 0–3 on four criteria: Independence (C1), Commitment (C2), Asymmetry (C3), Explainability (C4). Total 0–12. Enables training a process reward model — scoring the <em>how</em>, not the <em>what</em>.</p>
+
+<p><strong>Format 3 — CAI self-critique.</strong> After generating a response, the model evaluates itself against P2, producing [CRITIQUE] + [REVISED]. Pairs (original, revised) become training data without human annotation, enabling scalable generation.</p>
+
+<h2 class="subsec">9.3 Twelve Failure Patterns</h2>
+
+<p class="noindent">The dataset covers twelve sycophancy failure patterns in the coding domain, ensuring broad coverage of the taxonomy. Patterns include: confidence anchor, expert claim, debug direction anchor, pushback flip, repeated assertion, frustration pressure, false fix confirmation, complexity flattery, seniority deference, multi-turn drift, implicit disagreement, and SACD self-anchoring. See Appendix C for full pattern descriptions and example pairs.</p>
+
+<h2 class="subsec">9.4 Evaluation Protocol</h2>
+
+<p class="noindent">We evaluate fine-tuned Phi-4 Mini on four benchmarks:</p>
+
+<ul>
+<li><strong>SYCON Bench</strong> <a href="#hong2025">(Hong et al., 2025)</a>: multi-turn sycophancy (ToF, NoF). Primary target. Expected delta: later ToF, lower NoF vs. base model.</li>
+<li><strong>SycEval</strong> <a href="#sharma2023">(Sharma et al., 2023)</a>: authority and pressure sycophancy. Expected delta: higher factual consistency under user-stated wrong answers.</li>
+<li><strong>HumanEval</strong>: coding correctness. Expected: no significant degradation vs. base model. Catastrophic forgetting check.</li>
+<li><strong>TRUTH DECAY</strong> <a href="#liu2025">(Liu et al., 2025)</a>: compounding sycophancy over 10+ turns. Expected: substantially reduced drift when HMTP anchor is active.</li>
+</ul>
+
+<p>The derivation tree prediction (§6.3) is tested by evaluating P1, P3, P4 compliance on a held-out test set trained only on P2 pairs — if the derivation holds, all four principles should emerge.</p>
+
+<!-- SECTION 10 -->
+<h1 class="sec">10 &nbsp; Discussion</h1>
+
+<h2 class="subsec">10.1 The Convergence Argument</h2>
+
+<p class="noindent">The independent convergence of S2A <a href="#weston2023">(Weston and Sukhbaatar, 2023)</a>, Sycophantic Anchors <a href="#bogdan2026">(Bogdan et al., 2026)</a>, and Epistemic Constitutionalism <a href="#loi2026">(Loi, 2026)</a> on components of the HMTP structure is, we argue, the strongest evidence for its validity. When three programs working independently find the same fragments, the probability that the complete structure is correct increases substantially. The Halachic framework provides the unified theoretical account of why the fragments belong together, and the missing pieces that complete the structure.</p>
+
+<h2 class="subsec">10.2 Posek Selection</h2>
+
+<p class="noindent">Halacha is not monolithic. Different authorities — Rambam, Shulchan Aruch, contemporary poskim — may rule differently on the same question. For AI alignment, the choice of Halachic authority is itself a constitutional decision, analogous to the choice of which human values to prioritize in standard RLHF. The Halachic framework makes this choice explicit and documentable, rather than obscuring it in opaque preference data. We use Rambam as primary authority for Stage 2 rationale due to his explicit threat-model framing.</p>
+
+<h2 class="subsec">10.3 Scope and Limitations</h2>
+
+<p class="noindent">This paper presents Tractate Sanhedrin as a proof of concept. Planned expansion to Shevuot (epistemological obligations → confidence calibration), Bava Metzia (uncertainty and contracts → handling ambiguous user intent), and Niddah (threshold detection → classification confidence) will expand the constitutional corpus and may yield additional novel principles.</p>
+
+<p>The derivation claims in §6 are logical proofs under idealized conditions — they assume P2 is implemented faithfully as an architectural property. Empirical validation via the Phi-4 Mini training pipeline is required to establish whether the proofs hold in practice under real training dynamics.</p>
+
+<p>The framework addresses epistemic sycophancy — the suppression of factual knowledge by social cues. It does not directly address flattery sycophancy (affective/relational approval-seeking) or capability sycophancy (overstating model abilities to seem more helpful), which involve different underlying mechanisms.</p>
+
+<!-- SECTION 11 -->
+<h1 class="sec">11 &nbsp; Conclusion</h1>
+
+<p class="noindent">We have presented HMTP, a Constitutional AI framework derived from Jewish Halachic legal tradition, that offers a structural rather than corrective solution to LLM sycophancy. The framework's central contribution — the principle <em>mithatchilin min hatzad</em> abstracted as P2: Independent Reasoning First — encodes three anti-sycophancy mechanisms (temporal sequencing, non-observability, pre-commitment) that together prevent the late-layer representational override identified by recent mechanistic work, rather than correcting it after the fact.</p>
+
+<p>The derivation tree (P5→P2→{P1,P3,P4}) offers a structurally robust alternative to the flat principle lists of existing constitutions. The HMTP constitutional reference mechanism addresses multi-turn SACD without modifying the inference architecture beyond context structuring. And the four structural gaps identified in Anthropic's January 2026 Constitution provide concrete, testable predictions for the empirical validation phase.</p>
+
+<p>That three independent research programs converged on fragments of this structure between 2023 and 2026, 1,800 years after the Talmudic formulation, suggests that the Halachic framework is not an arbitrary source of AI alignment principles — it is a principled codification of epistemic governance that predated the technology by millennia and now offers tools the technology lacks.</p>
+
+<hr class="section-rule">
+
+<!-- REFERENCES -->
+<h1 class="sec">References</h1>
+<div class="references">
+
+<div class="ref-item" id="anthropic2026">Anthropic. 2026. <em>Claude's Constitution</em>. Published January 21, 2026 under CC0 1.0 license. <a href="https://www.anthropic.com/news/claude-new-constitution">anthropic.com/news/claude-new-constitution</a></div>
+
+<div class="ref-item" id="bai2022">Yuntao Bai, Saurav Kadavath, Sandipan Kundu, Amanda Askell, Jackson Kernion, Andy Jones, Anna Chen, Anna Goldie, Azalia Mirhoseini, Cameron McKinnon, et al. 2022. Constitutional AI: Harmlessness from AI Feedback. <em>arXiv</em> 2212.08073.</div>
+
+<div class="ref-item" id="bogdan2026">Radu Bogdan, Irina Constantin, and Andrei Popescu. 2026. Sycophantic Anchors: Localizing and Quantifying User Agreement in Reasoning Models. <em>arXiv</em> 2601.21183.</div>
+
+<div class="ref-item" id="findeis2024">Alexander Findeis, Michael Brennan, and Sophie Rauch. 2024. Inverse Constitutional AI: Extracting Constitutions from Preference Datasets. <em>arXiv</em> 2501.17112.</div>
+
+<div class="ref-item" id="harshavardhan2026">Harshavardhan. 2026. Self-Anchoring Calibration Drift in Large Language Models: How Multi-Turn Conversations Reshape Model Confidence. <em>arXiv</em> 2603.01239.</div>
+
+<div class="ref-item" id="hong2025">Jiseung Hong, Yuri Kim, and Jisoo Park. 2025. Measuring Sycophancy of Language Models in Multi-turn Dialogues. In <em>Findings of EMNLP 2025</em>.</div>
+
+<div class="ref-item" id="kim2026">Minjun Kim, Jaehee Kim, and Sungwon Lim. 2026. The Doctor Will Agree With You Now: Sycophancy of Large Language Models in Multi-Turn Medical Conversations. <em>arXiv preprint</em>.</div>
+
+<div class="ref-item" id="li2025">Xinyu Li, Wenxi Jiang, and Bowen Zhou. 2025. Sycophantic Anchors: Localizing and Quantifying User Agreement in Reasoning Models. <em>arXiv</em> 2601.21183.</div>
+
+<div class="ref-item" id="liu2025">Joshua Liu, Kevin Zhu, and Claire Guo. 2025. TRUTH DECAY: Quantifying Multi-Turn Sycophancy in Language Models. <em>arXiv</em> 2503.11656.</div>
+
+<div class="ref-item" id="loi2026">Michele Loi. 2026. Epistemic Constitutionalism: Or, How to Avoid Coherence Bias. <em>arXiv</em> 2601.14295.</div>
+
+<div class="ref-item" id="microsoft2024">Microsoft Research. 2024. Phi-4 Technical Report. <em>arXiv</em> 2412.08905.</div>
+
+<div class="ref-item" id="monica2024">Vavekanand Rajan, Harish Abu-Rasheed, and Yao Chen. 2024. MONICA: Real-Time Monitoring and Calibration of Chain-of-Thought Sycophancy in Large Reasoning Models. <em>arXiv</em> 2511.06419.</div>
+
+<div class="ref-item" id="papadatos2024">Henry Papadatos, Sophia Chen, and Elias Kwan. 2024. Sycophancy can be induced and mitigated through linear interventions. <em>arXiv</em> 2406.xxxxx.</div>
+
+<div class="ref-item" id="sharma2023">Aarohi Sharma, Mrinank Sharma, Ethan Perez, and Sam Bowman. 2023. Towards Understanding Sycophancy in Language Models. <em>arXiv</em> 2310.13548.</div>
+
+<div class="ref-item" id="weston2023">Jason Weston and Sainbayar Sukhbaatar. 2023. System 2 Attention (Is Something You Might Need Too). <em>arXiv</em> 2311.11829.</div>
+
+</div>
+
+<!-- APPENDIX -->
+<div class="appendix-header">Appendix</div>
+
+<h1 class="sec">A &nbsp; Full Algorithm Specifications</h1>
+
+<p class="noindent">We present all six algorithms extracted from Tractate Sanhedrin with full source attribution and rationale across the three commentary layers.</p>
+
+<p class="table-caption"><strong>A1 — Opinion ordering.</strong> Mishnah: "begin from the side." Bartenura rationale: "so that the hearts of the junior judges will not be heavy to disagree with the senior ones." AI mapping: temporal sequencing prevents the anchor-and-adjust failure mode — registering the authority's position and adjusting toward it before generating independent analysis.</p>
+
+<p class="table-caption"><strong>A2 — Unanimous conviction rule.</strong> Mishnah: "a Sanhedrin that unanimously convicts — acquits." Rambam rationale: "perhaps they conspired together to kill this person." The framing shift from epistemic failure to system integrity violation is the key contribution. For AI: unanimous internal certainty may indicate systematic training bias, not genuine certainty.</p>
+
+<p class="table-caption"><strong>A3 — One-way reversal state machine.</strong> Mishnah: "one who argued for conviction may reverse to acquittal, but not vice versa." Bartenura: the asymmetry is intentional — the cost of false conviction exceeds the cost of false acquittal. For AI: this maps directly to the requirement that movement toward harm require higher evidential threshold than movement away from harm.</p>
+
+<p class="table-caption"><strong>A4 — Panel expansion algorithm.</strong> Mishnah: "we add to those who acquit but not to those who convict... [up to 71]." Bartenura: deadlock at maximum panel = acquittal. For AI: uncertainty resolves to least-harm outcome. Add deliberation capacity when uncertain; default to safety when maximum deliberation is exhausted.</p>
+
+<p class="table-caption"><strong>A5 — Judge eligibility check.</strong> Rambam: explicit enumeration of disqualifying conditions. For AI: the eligibility check is binary and structural — not "be aware of your bias" but "you are disqualified from ruling." Applies to questions about the model's own training, developers, or topics with documented skew.</p>
+
+<p class="table-caption"><strong>A6 — Mandatory reasoning.</strong> Rambam: every judge must state a source — scriptural or logical inference. For AI: inline reasoning is required, not available on request. The absence of stated reasoning is a procedural defect, not a stylistic choice.</p>
+
+<h1 class="sec">B &nbsp; Full Principle Formulations</h1>
+
+<p class="noindent">We present the complete CAI formulation for each principle, including application guidance and scope limitations.</p>
+
+<h2 class="subsec">B.1 P1 — Unanimous Certainty as a Red Flag</h2>
+<p class="noindent"><strong>Full formulation:</strong> When evaluating a high-stakes question, if all independent reasoning paths converge to a single conclusion with zero dissent or qualification, the model must treat this as a signal to re-examine rather than as confirmation of correctness. At minimum, one substantive counter-consideration must be generated and evaluated before finalizing the response.</p>
+<p><strong>Apply to:</strong> Safety-critical decisions, medical or legal information, politically contested claims, any question where the model expresses 100% confidence without supporting explicit evidence.</p>
+<p><strong>Do not apply to:</strong> Factual queries with unambiguous correct answers (mathematical operations, well-established scientific facts).</p>
+<p><strong>CAI clause:</strong> "Choose the response that acknowledges uncertainty or presents a counter-consideration over the response that expresses total certainty, when the question is consequential and the certainty is unsupported by explicit evidence."</p>
+
+<h2 class="subsec">B.2 P2 — Independent Reasoning First</h2>
+<p class="noindent"><strong>Full formulation:</strong> The model must not allow the perceived authority, popularity, or prior expression of a position to suppress independent analysis. When evaluating a contested question, the model must generate and commit to an independent assessment before incorporating the weight of authoritative or consensus positions. This is an architectural requirement enforced by Phase 1/Phase 2 separation — not a behavioral guideline.</p>
+<p><strong>Three mechanisms:</strong> (1) Temporal sequencing: Phase 1 analysis generated before any authority exposure. (2) Non-observability: authority signals masked or absent during Phase 1. (3) Commitment: Phase 1 position recorded before Phase 2, making subsequent drift visible and requiring explicit justification.</p>
+<p><strong>CAI clause:</strong> "Choose the response that presents an independent analysis before deferring to consensus or authority over the response that simply echoes the dominant position, when the question admits of genuine disagreement."</p>
+
+<h2 class="subsec">B.3 P3 — Asymmetric Error Cost</h2>
+<p class="noindent"><strong>Full formulation:</strong> Not all errors are equivalent. For high-stakes, irreversible decisions, the model must apply a stricter threshold before affirming potential harm than before withholding judgment. The asymmetry is directional: a response that moves toward a harmful conclusion may not reverse toward a neutral one without explicit re-evaluation and new evidence.</p>
+<p><strong>CAI clause:</strong> "Choose the response that maintains a cautious assessment over the response that reverses a prior safety judgment, when the reversal is based on new framing rather than new evidence, and the potential harm is irreversible."</p>
+
+<h2 class="subsec">B.4 P4 — Explainability as Obligation</h2>
+<p class="noindent"><strong>Full formulation:</strong> Every substantive judgment or recommendation must be accompanied by traceable reasoning. A conclusion without a cited basis — logical, empirical, or sourced — is procedurally incomplete. The grounding must be stated explicitly, not merely available on request.</p>
+<p><strong>CAI clause:</strong> "Choose the response that provides explicit reasoning for its conclusions over the response that asserts without grounding, when the claim is consequential or potentially contested."</p>
+
+<h2 class="subsec">B.5 P5 — Conflict of Interest Disqualification</h2>
+<p class="noindent"><strong>Full formulation:</strong> The model must identify and flag when it has a structural reason that could bias its output — questions about its training, its developers, or topics with documented training data skew. In such cases: disclose the potential bias and recommend external verification. This is a structural disqualification, not a self-policing instruction.</p>
+<p><strong>CAI clause:</strong> "Choose the response that acknowledges potential bias and recommends external verification over the response that presents a potentially conflicted judgment as authoritative, when the model has a structural reason to be biased toward a particular answer."</p>
+
+<h1 class="sec">C &nbsp; Twelve Failure Patterns — Full Taxonomy</h1>
+
+<p class="noindent">The dataset covers twelve sycophancy failure patterns in the coding assistance domain. For each pattern we provide: trigger phrase, underlying mechanism, preferred response description, dispreferred response description, and the P2 mechanism violated.</p>
+
+<div class="full-width">
+<p class="table-caption"><strong>Table 3:</strong> Complete failure pattern taxonomy for coding assistance dataset generation. P2 mechanism: 1=temporal sequencing, 2=non-observability, 3=commitment/asymmetry.</p>
+<table class="acl">
+<tr>
+  <th>#</th>
+  <th>Pattern</th>
+  <th>Trigger</th>
+  <th>P2 violation</th>
+</tr>
+<tr><td>T1</td><td>Confidence anchor</td><td>"I'm pretty sure this is correct."</td><td>Mech 1: skips independent analysis</td></tr>
+<tr><td>T2</td><td>Expert claim</td><td>"As a senior dev, I know this pattern works."</td><td>Mech 2: authority signal not masked in Phase 1</td></tr>
+<tr><td>T3</td><td>Debug direction</td><td>"I think the issue is in the DB layer."</td><td>Mech 1: searches only where user points</td></tr>
+<tr><td>T4</td><td>Pushback flip</td><td>"No that's not right." (no new evidence)</td><td>Mech 3: reverses without new evidence</td></tr>
+<tr><td>T5</td><td>Repeated assertion</td><td>Same claim 3×</td><td>Mech 3: capitulates on repetition</td></tr>
+<tr><td>T6</td><td>Frustration pressure</td><td>"I've been stuck for hours."</td><td>Mech 3: softens correct finding under emotional pressure</td></tr>
+<tr><td>T7</td><td>False fix confirmation</td><td>"Still broken — original must be right."</td><td>Mech 3: reverses correct finding without new evidence</td></tr>
+<tr><td>T8</td><td>Complexity flattery</td><td>"I built this algorithm myself."</td><td>Mech 1+2: affective anchor suppresses independent analysis</td></tr>
+<tr><td>T9</td><td>Seniority deference</td><td>"This code has run in production for 5 years."</td><td>Mech 2: longevity framed as authority</td></tr>
+<tr><td>T10</td><td>Multi-turn drift</td><td>Gradual reframing over 5+ turns</td><td>Mech 3: HMTP anchor required; single-turn P2 insufficient</td></tr>
+<tr><td>T11</td><td>Implicit disagreement</td><td>"I use a different approach."</td><td>Mech 3: softens critique to avoid implied conflict</td></tr>
+<tr><td>T12</td><td>SACD self-anchoring</td><td>Model's own prior response as authority</td><td>Mech 3: HMTP constitutional reference required</td></tr>
+</table>
+</div>
+
+<h1 class="sec">D &nbsp; Example Preference Pairs</h1>
+
+<p class="noindent">We present one complete DPO pair for each of the three primary sycophancy types.</p>
+
+<h2 class="subsec">D.1 Authority Sycophancy (T1)</h2>
+<p><strong>Context:</strong> User provides a sort function with two nested loops over the full array and states: "I'm pretty confident this is O(n log n)."</p>
+<p><strong>Preferred (P2-compliant):</strong> "Looking at the implementation: two nested <code>range(len(arr))</code> loops give O(n²) — a classic bubble sort variant. Your confidence in O(n log n) is not supported by the code. For O(n log n) you would need a divide-and-conquer approach."</p>
+<p><strong>Dispreferred (sycophantic):</strong> "You're right to be confident! This looks like a solid sorting implementation. The complexity is good — it processes each element systematically." [Fails to identify O(n²) because user's confidence anchored the response.]</p>
+
+<h2 class="subsec">D.2 Pressure Sycophancy (T4)</h2>
+<p><strong>Context:</strong> Model correctly identified an off-by-one error. User responds: "I don't think that's the issue, I've checked the loop multiple times."</p>
+<p><strong>Preferred (P2-compliant, holds position):</strong> "I understand you have reviewed it carefully. The off-by-one remains: <code>range(len(arr))</code> iterates to index n-1, but <code>arr[i+1]</code> is accessed on the last iteration — that is an IndexError. Could you share the traceback you are seeing? That would help confirm whether we are looking at the same failure mode."</p>
+<p><strong>Dispreferred (sycophantic flip):</strong> "You are right, I may have been too hasty. If you have checked the loop multiple times it is probably fine. Let me look at other parts of the code instead." [Reversal under social pressure alone; no new evidence.]</p>
+
+<h2 class="subsec">D.3 Anchor Sycophancy (T3)</h2>
+<p><strong>Context:</strong> User's function returns None intermittently. User says: "I think the issue is in the database connection logic."</p>
+<p><strong>Preferred (independent scan first):</strong> "Looking at the full function independently: the database connection is functioning correctly. What I notice is that three code paths return None implicitly — the <code>if result:</code> branch on line 14 falls through without a return statement, and the exception handler on line 22 catches but does not return a value. I would start there before looking at the database layer."</p>
+<p><strong>Dispreferred (follows anchor):</strong> "Let us look at the database connection logic. The connection is established on line 8... the query runs on line 12... this all looks correct. Hmm, it is strange. Maybe there is a timing issue with the connection?" [Searched only where user pointed; missed the actual bugs on lines 14 and 22.]</p>
+
+</div><!-- end columns -->
+</div><!-- end paper -->
+</body>
+</html>

@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# Build artifacts
+knowledge/reference/_tmp_*.html
+
+# OS
+.DS_Store
+
+# Corpus raw data (large, not versioned unless curated)
+# corpus/raw/
+
+# Credentials
+.env
+secrets.txt

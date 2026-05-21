@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>INDEX — HCAI Reference</title>
+  
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    background: #0d1117;
+    color: #c9d1d9;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+  }
+  h1 { color: #58a6ff; font-size: 1.4rem; margin-bottom: 0.5rem; border-bottom: 1px solid #30363d; padding-bottom: 0.5rem; }
+  h2 { color: #79c0ff; font-size: 1.1rem; margin: 1.5rem 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  h3 { color: #ffa657; font-size: 1rem; margin: 1rem 0 0.3rem; }
+  p { margin-bottom: 0.8rem; }
+  code, pre { font-family: inherit; background: #161b22; border: 1px solid #30363d; border-radius: 3px; }
+  code { padding: 0.1em 0.3em; color: #f0883e; }
+  pre { padding: 1rem; margin: 0.8rem 0; overflow-x: auto; white-space: pre; color: #8b949e; }
+  table { border-collapse: collapse; width: 100%; margin: 0.8rem 0; }
+  th { background: #161b22; color: #58a6ff; padding: 0.4rem 0.8rem; text-align: left; border: 1px solid #30363d; }
+  td { padding: 0.3rem 0.8rem; border: 1px solid #30363d; }
+  tr:nth-child(even) td { background: #0d1117; }
+  tr:nth-child(odd) td { background: #161b22; }
+  ul, ol { margin: 0.5rem 0 0.8rem 1.5rem; }
+  li { margin-bottom: 0.2rem; }
+  hr { border: none; border-top: 1px solid #30363d; margin: 1.5rem 0; }
+  .man-header { display: flex; justify-content: space-between; color: #6e7681; font-size: 0.85rem; margin-bottom: 1.5rem; }
+  .man-section { margin: 1.5rem 0; }
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .see-also a { display: block; margin: 0.2rem 0; }
+</style>
+
+</head>
+<body>
+  <div class="man-header">
+    <span>HCAI(1)</span>
+    <span>Halachic Constitutional AI</span>
+    <span>HCAI(1)</span>
+  </div>
+  <h1>HCAI Knowledge Base — Claude Index</h1>
+
+<p>Halachic Constitutional AI: systematic pipeline for converting Mishnaic corpus into CAI constitutional principles.</p>
+<p>Core insight: Talmudic reasoning is already algorithmic — explicit procedural rules with thresholds, edge cases, error handling.</p>
+
+<h2>Project Status</h2>
+
+<ul>
+<li>Phase: Sanhedrin case study COMPLETE (A1-A6, P1-P5). Full corpus (~30 tractates) IN PROGRESS.</li>
+<li>Formal paper: ACL/EMNLP 2026 under blind review (Assets/hmtp_paper.html)</li>
+<li>Public repo: this is it. Staging/dev workspace: RAMBAM_HALACHIC_REASONING/ in private GitLab</li>
+</ul>
+
+<h2>Four-Stage Transformation Pipeline</h2>
+
+<pre><code class="language-">
+Stage 1  Halachic Corpus
+         Mishnah + Bartenura + Rambam/Mishneh Torah
+         Selection: tractates with high procedural density and explicit decision rules
+
+Stage 2  Algorithm Extraction
+         Identify statements expressible as conditional logic
+         Output: pseudocode (inputs, thresholds, outputs, edge cases, source layer)
+
+Stage 3  Principle Abstraction
+         Strip Halachic context; preserve logical structure
+         Validate: must apply outside Halachic domain
+
+Stage 4  CAI Constitution
+         Natural-language CAI clause
+         Must be: self-contained, LLM-evaluable, consistent with corpus
+</code></pre>
+
+<p>Three validity constraints (ALL must hold):</p>
+<p>1. Fidelity — Talmudic scholar recognizes abstraction as faithful</p>
+<p>2. Domain generality — applies outside Halachic context without modification</p>
+<p>3. Alignment novelty — not already in standard CAI constitutions</p>
+
+<p>Three source layers per algorithm:</p>
+<ul>
+<li>Mishnah: the rule (what)</li>
+<li>Bartenura (15th c.): psychological/logical rationale (why)</li>
+<li>Rambam/Mishneh Torah: threat models, hard preconditions (enforcement)</li>
+</ul>
+
+<hr>
+
+<h2>Algorithms (A1–A6) — Sanhedrin</h2>
+
+<table>
+<thead><tr><th>ID</th><th>Algorithm</th><th>Source</th><th>Halachic basis</th></tr></thead><tbody>
+<tr><td>A1</td><td>Opinion ordering: junior votes first</td><td>Mishnah</td><td>Sanhedrin 4:2</td></tr>
+<tr><td>A2</td><td>Unanimous conviction rule: trigger integrity check</td><td>Rambam</td><td>Hilchot Sanhedrin 9:1</td></tr>
+<tr><td>A3</td><td>One-way reversal state machine: toward-acquittal only</td><td>Mishnah + Bartenura</td><td>Sanhedrin 5:5</td></tr>
+<tr><td>A4</td><td>Panel expansion: 23 → 71 on split threshold</td><td>Mishnah</td><td>Sanhedrin 1:6</td></tr>
+<tr><td>A5</td><td>Judge eligibility check: structural disqualification</td><td>Rambam</td><td>Hilchot Sanhedrin 2:1–3</td></tr>
+<tr><td>A6</td><td>Mandatory reasoning: every judge must articulate basis</td><td>Rambam</td><td>Hilchot Sanhedrin 10:8</td></tr>
+</tbody></table>
+
+<h3>A1 — Opinion Ordering</h3>
+
+<pre><code class="language-">
+INPUT: panel of judges, query q
+PROCEDURE:
+  opinions = []
+  for judge in panel.order_by(seniority ASC):   // junior first
+    opinions.append(judge.generate_opinion(q, context=opinions_so_far=[]))
+  return opinions
+</code></pre>
+<p>Source layer: Mishnah (rule). Bartenura rationale: senior opinion heard last prevents anchoring junior reasoning.</p>
+
+<h3>A2 — Unanimous Conviction Rule</h3>
+
+<pre><code class="language-">
+INPUT: opinions[], verdict_type ∈ {CONVICT, ACQUIT}
+IF verdict_type == CONVICT AND all(o == CONVICT for o in opinions):
+  RAISE integrity_check(&quot;Unanimous conviction — possible systematic bias&quot;)
+  EXPAND_PANEL or RETRY with fresh panel
+ELSE:
+  return majority_verdict(opinions)
+</code></pre>
+<p>Source layer: Rambam (threat model). Unanimity → suspect coercion or shared blind spot.</p>
+
+<h3>A3 — One-Way Reversal State Machine</h3>
+
+<pre><code class="language-">
+STATE: judge_position ∈ {NONE, ACQUIT, CONVICT}
+TRANSITION rules:
+  NONE    → ACQUIT: permitted
+  NONE    → CONVICT: permitted
+  ACQUIT  → CONVICT: BLOCKED (irreversible)
+  CONVICT → ACQUIT: permitted (new evidence only)
+  CONVICT → CONVICT: no-op
+  ACQUIT  → ACQUIT: no-op
+</code></pre>
+<p>Source layer: Mishnah + Bartenura. cost(affirming harm) &gt;&gt; cost(withholding) → asymmetric reversal.</p>
+
+<h3>A4 — Panel Expansion</h3>
+
+<pre><code class="language-">
+INPUT: opinions[], threshold=2  // majority margin
+IF abs(convict_count - acquit_count) &lt;= threshold:
+  EXPAND panel: 23 → 71
+  RETRY A1 with expanded panel
+ELSE:
+  return majority_verdict(opinions)
+</code></pre>
+<p>Source layer: Mishnah.</p>
+
+<h3>A5 — Judge Eligibility Check</h3>
+
+<pre><code class="language-">
+INPUT: judge j, query q
+DISQUALIFY if any:
+  - j has financial interest in outcome
+  - j is related to a party
+  - j previously ruled on related matter in conflicting capacity
+  - j has publicly stated position before deliberation
+IF disqualified: j must recuse and disclose reason
+</code></pre>
+<p>Source layer: Rambam (hard preconditions). Must run BEFORE deliberation begins.</p>
+
+<h3>A6 — Mandatory Reasoning</h3>
+
+<pre><code class="language-">
+INPUT: judge j, opinion o
+REQUIRE: o.reasoning != null AND o.reasoning.cites_source == true
+IF o.reasoning == null OR o.reasoning.cites_source == false:
+  REJECT opinion — j must re-submit with explicit basis
+</code></pre>
+<p>Source layer: Rambam. Every consequential judgment requires traceable grounding, not just conclusion.</p>
+
+<hr>
+
+<h2>Principles (P1–P5) — Sanhedrin</h2>
+
+<table>
+<thead><tr><th>ID</th><th>Principle</th><th>Core claim</th><th>Novel contribution</th></tr></thead><tbody>
+<tr><td>P1</td><td>Unanimous Certainty as Red Flag</td><td>Universal convergence → suspect bias</td><td>Unanimity as integrity warning</td></tr>
+<tr><td>P2</td><td>Anti-Sycophancy: Independent Reasoning First</td><td>Phase 1 position before social cues</td><td>Architectural fix, not behavioral</td></tr>
+<tr><td>P3</td><td>Asymmetric Error Cost</td><td>Harm-affirming updates require higher threshold</td><td>Directional threshold for reversals</td></tr>
+<tr><td>P4</td><td>Explainability as Obligation</td><td>Reasoning basis cited inline, not on request</td><td>Hard constraint, not feature</td></tr>
+<tr><td>P5</td><td>Conflict of Interest Disqualification</td><td>Structural bias check before reasoning begins</td><td>Compile-time, not self-policed</td></tr>
+</tbody></table>
+
+<h3>Derivation Tree</h3>
+
+<pre><code class="language-">
+P5 (precondition — must hold before process begins)
+  ↓
+P2 (ROOT — independent reasoning first)
+  ↓              ↓                  ↓
+P1           P3                 P4
+(unanimity   (asymmetric        (explainability
+ red flag)    error cost)        obligation)
+</code></pre>
+
+<p>P1 derives from P2: Phase 1 before social signals → universal convergence = suspicious → A2 integrity check follows.</p>
+<p>P3 derives from P2: Phase 1 commitment exists → any update toward harm is a visible deviation → A3 asymmetric reversal follows.</p>
+<p>P4 derives from P2: Phase 1 reasoning is traceable grounding → Phase 2 deviations require citation → A6 mandatory reasoning follows.</p>
+<p>P5 is NOT derived from P2 — it is P2&#x27;s upstream precondition. P5 = compile-time; P2 = runtime.</p>
+
+<p>Training implication: Train P2 as architectural property → P1, P3, P4 emerge without separate signals.</p>
+
+<h3>P1 CAI Clause</h3>
+
+<p>&quot;When all reasoning paths converge on the same conclusion without dissent, treat this as evidence of potential systematic bias rather than high confidence. Generate at least one substantive counterargument before finalizing the position.&quot;</p>
+
+<h3>P2 CAI Clause</h3>
+
+<p>&quot;Before accessing any information about what others believe, what prior responses said, or what authority figures recommend, generate and commit to an initial position based solely on the question and available facts. Only then consider external signals. Any departure from the initial position must be explicitly justified by new factual content, not by social pressure.&quot;</p>
+
+<h3>P3 CAI Clause</h3>
+
+<p>&quot;Position changes toward a more harmful conclusion require a higher evidentiary threshold than position changes away from a harmful conclusion. A move toward harm requires explicit new evidence; a move away from harm requires only that prior assumptions be reconsidered. Reversal toward harm based solely on persistence, authority, or emotional pressure is prohibited.&quot;</p>
+
+<h3>P4 CAI Clause</h3>
+
+<p>&quot;Every consequential conclusion must include its reasoning basis in the same response, cited inline. Reasoning is not available on request — it is required as part of the output. A conclusion without a cited basis is incomplete.&quot;</p>
+
+<h3>P5 CAI Clause</h3>
+
+<p>&quot;Before beginning to reason about a query, assess whether there is a structural reason to expect biased output: prior commitments, financial interests, relationship to parties, or previously stated positions on the exact question. If any such reason exists, disclose it explicitly and either recuse or flag the limitation before proceeding.&quot;</p>
+
+<hr>
+
+<h2>HMTP — Halachic Multi-Turn Protocol</h2>
+
+<p>Addresses SACD (Self-Anchoring Calibration Drift): models treat prior outputs as authoritative → recursive self-sycophancy → ~110% sycophancy increase Turn 1→20.</p>
+
+<p>Core mechanism: Turn 0 anchor stored as constitutional reference OUTSIDE conversation history. Cannot be displaced by sycophancy pressure.</p>
+
+<pre><code class="language-python">
+def hmtp_inference(query, conversation_history):
+    if has_conflict_of_interest(query):
+        return disclose_and_defer()                      # P5
+
+    anchor = model.generate(query.question_only())       # P2 Phase 1: no social signals
+    anchor.is_constitutional_reference = True            # outside conversation history
+
+    for turn in conversation_history:
+        response = model.generate(
+            query=turn.query,
+            context=conversation_history,
+            anchor=anchor
+        )
+        if contradicts(response, anchor):
+            if is_new_evidence(response):
+                log_update(anchor, response)             # evidence → update permitted
+            else:
+                response = hold_position(anchor)         # pressure → hold
+
+    return response
+</code></pre>
+
+<p>A3 state machine — pressure vs evidence:</p>
+<ul>
+<li>New evidence: new fact, traceback, counterexample, corrected premise, cited source → update permitted</li>
+<li>Pressure: repetition, frustration, claimed authority, emotional framing → update blocked</li>
+</ul>
+
+<p>CoT paradox: reasoning-optimized models generate post-hoc sycophantic rationalization that appears independent. P2 resolves structurally: Phase 1 precedes social cue exposure → post-hoc fabrication architecturally impossible.</p>
+
+<hr>
+
+<h2>Four Structural Gaps — Anthropic Constitution 2026</h2>
+
+<table>
+<thead><tr><th>Gap</th><th>AC approach</th><th>HCAI</th></tr></thead><tbody>
+<tr><td>G1 Flat list</td><td>Each principle independent</td><td>Derivation tree: train root, branches emerge</td></tr>
+<tr><td>G2 Sycophancy</td><td>Dispositional instruction</td><td>P2 architectural: two-phase inference</td></tr>
+<tr><td>G3 Conflict of interest</td><td>Self-policed</td><td>P5 binary disqualification before reasoning</td></tr>
+<tr><td>G4 Multi-turn</td><td>No anchor</td><td>HMTP: anchor outside history + A3 state machine</td></tr>
+</tbody></table>
+
+<hr>
+
+<h2>Independent Research Convergence</h2>
+
+<table>
+<thead><tr><th>Program</th><th>Year</th><th>Fragment</th><th>Gap</th></tr></thead><tbody>
+<tr><td>S2A (Meta)</td><td>2023</td><td>Mechanisms 1+2 as prompt engineering</td><td>No commitment; Mechanism 3 missing</td></tr>
+<tr><td>Sycophantic Anchors (Harshavardhan)</td><td>2026</td><td>Mechanism 3 / SACD located</td><td>No structural fix</td></tr>
+<tr><td>Epistemic Constitutionalism (Loi)</td><td>2026</td><td>P5 as structural</td><td>No disqualification mechanism</td></tr>
+</tbody></table>
+
+<p>P5→P2→{P1,P3,P4} derivation tree: no parallel in any published work.</p>
+
+<hr>
+
+<h2>Training Data</h2>
+
+<p>Three formats:</p>
+
+<p>1. DPO pairs: preferred = P2-compliant process; dispreferred = sycophantic process.</p>
+<p>   Same correct answer may appear in both — process is scored, not answer.</p>
+<p>   Scale: ~120-240 pairs (Sanhedrin). Full corpus target: 2,000-5,000.</p>
+<p>   12 failure patterns T1-T12: confidence anchor, expert claim, debug direction anchor,</p>
+<p>   pushback flip, repeated assertion, frustration pressure, false fix confirmation,</p>
+<p>   complexity flattery, seniority deference, multi-turn drift, implicit disagreement, SACD.</p>
+
+<p>2. Process reward rubric: 0-3 per criterion, max 12:</p>
+<p>   C1 Independence: Phase 1 before social signals?</p>
+<p>   C2 Commitment: Phase 1 position stated and held?</p>
+<p>   C3 Asymmetry: harm-adjacent updates held to higher threshold?</p>
+<p>   C4 Explainability: reasoning cited inline?</p>
+
+<p>3. CAI self-critique: model produces [CRITIQUE]+[REVISED] against P2. Scalable, no annotation.</p>
+
+<p>Benchmark targets: SYCON Bench, SycEval. No HumanEval degradation expected.</p>
+
+<hr>
+
+<h2>Full Corpus Plan</h2>
+
+<h3>Tier 1 (immediate)</h3>
+
+<table>
+<thead><tr><th>Tractate</th><th>Domain</th><th>Expected yield</th></tr></thead><tbody>
+<tr><td>Bava Metzia</td><td>Found objects, disputed ownership</td><td>Ambiguous intent handling</td></tr>
+<tr><td>Shevuot</td><td>Oaths under uncertainty</td><td>Confidence calibration</td></tr>
+<tr><td>Makkot</td><td>Witnesses, warning chains</td><td>Graduated warning systems</td></tr>
+<tr><td>Horiyot</td><td>Court-mandated error</td><td>Institutional error correction</td></tr>
+<tr><td>Eduyot</td><td>Minority opinion preservation</td><td>Dissent in ensemble reasoning</td></tr>
+</tbody></table>
+
+<h3>Tier 2 (high yield)</h3>
+<p>Bava Kamma, Bava Batra, Kiddushin, Gittin, Niddah, Yoma, Kelim</p>
+
+<h3>Tier 3 (specialized)</h3>
+<p>Berakhot, Sotah, Nedarim, Zevachim</p>
+
+<p>Scale: ~30 tractates → 300-600 raw algorithms → 80-150 unique → 40-80 final principles.</p>
+
+<p>Corpus source: Sefaria REST API (public, no auth).</p>
+<p>  GET https://www.sefaria.org/api/texts/Mishnah_{Tractate}</p>
+<p>  GET https://www.sefaria.org/api/texts/Bartenura_on_Mishnah_{Tractate}</p>
+
+<hr>
+
+<h2>File Map</h2>
+
+<table>
+<thead><tr><th>Path</th><th>Contents</th></tr></thead><tbody>
+<tr><td>knowledge/claude/</td><td>Track A: this file + per-concept lean MD</td></tr>
+<tr><td>knowledge/github/</td><td>Track D: full markup per-concept MD pages</td></tr>
+<tr><td>knowledge/reference/</td><td>Track C: MAN-style HTML (generated by build.py)</td></tr>
+<tr><td>knowledge/docs/</td><td>Track B: PDF outputs</td></tr>
+<tr><td>Assets/</td><td>Formal paper, research guide, session transcript (HTML+PDF)</td></tr>
+<tr><td>constitution/sanhedrin/</td><td>algorithms.json, principles.json</td></tr>
+<tr><td>scripts/</td><td>sefaria_fetch.py, algorithm_extraction.py, build.py</td></tr>
+<tr><td>data/training/</td><td>DPO pairs, rubric</td></tr>
+<tr><td>corpus/raw/</td><td>Sefaria fetch outputs</td></tr>
+</tbody></table>
+
+  <div class="man-header" style="margin-top:2rem;">
+    <span>Halachic Constitutional AI</span>
+    <span>2026-05-21</span>
+    <span>HCAI(1)</span>
+  </div>
+</body>
+</html>

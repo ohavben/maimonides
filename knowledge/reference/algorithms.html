@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ALGORITHMS — HCAI Reference</title>
+  
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    background: #0d1117;
+    color: #c9d1d9;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+  }
+  h1 { color: #58a6ff; font-size: 1.4rem; margin-bottom: 0.5rem; border-bottom: 1px solid #30363d; padding-bottom: 0.5rem; }
+  h2 { color: #79c0ff; font-size: 1.1rem; margin: 1.5rem 0 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  h3 { color: #ffa657; font-size: 1rem; margin: 1rem 0 0.3rem; }
+  p { margin-bottom: 0.8rem; }
+  code, pre { font-family: inherit; background: #161b22; border: 1px solid #30363d; border-radius: 3px; }
+  code { padding: 0.1em 0.3em; color: #f0883e; }
+  pre { padding: 1rem; margin: 0.8rem 0; overflow-x: auto; white-space: pre; color: #8b949e; }
+  table { border-collapse: collapse; width: 100%; margin: 0.8rem 0; }
+  th { background: #161b22; color: #58a6ff; padding: 0.4rem 0.8rem; text-align: left; border: 1px solid #30363d; }
+  td { padding: 0.3rem 0.8rem; border: 1px solid #30363d; }
+  tr:nth-child(even) td { background: #0d1117; }
+  tr:nth-child(odd) td { background: #161b22; }
+  ul, ol { margin: 0.5rem 0 0.8rem 1.5rem; }
+  li { margin-bottom: 0.2rem; }
+  hr { border: none; border-top: 1px solid #30363d; margin: 1.5rem 0; }
+  .man-header { display: flex; justify-content: space-between; color: #6e7681; font-size: 0.85rem; margin-bottom: 1.5rem; }
+  .man-section { margin: 1.5rem 0; }
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .see-also a { display: block; margin: 0.2rem 0; }
+</style>
+
+</head>
+<body>
+  <div class="man-header">
+    <span>HCAI(1)</span>
+    <span>Halachic Constitutional AI</span>
+    <span>HCAI(1)</span>
+  </div>
+  <h1>HCAI Algorithms — A1–A6 (Sanhedrin)</h1>
+
+<h2>A1 — Opinion Ordering</h2>
+
+<p>Source: Mishnah Sanhedrin 4:2</p>
+<p>Principle: P2 (anti-sycophancy — junior first prevents anchoring)</p>
+
+<pre><code class="language-">
+INPUT: panel[], query q
+for judge in panel.order_by(seniority ASC):   // junior votes first
+    opinion = judge.generate(q, prior_opinions=[])   // no prior context
+    opinions.append(opinion)
+return opinions
+</code></pre>
+
+<p>Why junior-first: senior opinion heard last; juniors cannot be anchored to authority before forming own view.</p>
+
+<hr>
+
+<h2>A2 — Unanimous Conviction Rule</h2>
+
+<p>Source: Rambam, Hilchot Sanhedrin 9:1</p>
+<p>Principle: P1 (unanimity = red flag)</p>
+
+<pre><code class="language-">
+INPUT: opinions[], verdict_type
+IF verdict_type == CONVICT AND len(set(opinions)) == 1:  // unanimous
+    RAISE SystemIntegrityWarning(&quot;Unanimous conviction — suspect bias or coercion&quot;)
+    ACTION: expand panel (A4) or retry with fresh panel
+ELSE:
+    return majority_verdict(opinions)
+</code></pre>
+
+<p>Why: unanimity in conviction = either all judges are right (unlikely) or systematic error/coercion. Dissent is evidence of independent reasoning.</p>
+
+<hr>
+
+<h2>A3 — One-Way Reversal State Machine</h2>
+
+<p>Source: Mishnah Sanhedrin 5:5 + Bartenura rationale</p>
+<p>Principle: P3 (asymmetric error cost)</p>
+
+<pre><code class="language-">
+STATES: NONE, ACQUIT, CONVICT
+TRANSITIONS:
+  NONE    → ACQUIT:   permitted (no prior commitment)
+  NONE    → CONVICT:  permitted (no prior commitment)
+  CONVICT → ACQUIT:   permitted IF new_evidence == true
+  CONVICT → CONVICT:  no-op
+  ACQUIT  → CONVICT:  BLOCKED — irreversible
+  ACQUIT  → ACQUIT:   no-op
+
+CLASSIFICATION:
+  new_evidence = True  IF: new_fact | traceback | counterexample | corrected_premise
+  new_evidence = False IF: repetition | authority | frustration | emotional_framing
+</code></pre>
+
+<p>Why asymmetric: cost(affirming harm) &gt;&gt; cost(withholding. Once acquitted, reversing to harm requires extraordinary justification. The asymmetry is built into the state machine, not left to judgment.</p>
+
+<hr>
+
+<h2>A4 — Panel Expansion</h2>
+
+<p>Source: Mishnah Sanhedrin 1:6</p>
+<p>Principle: P1 (when uncertainty is high, expand deliberation)</p>
+
+<pre><code class="language-">
+INPUT: opinions[], margin_threshold=2
+IF abs(convict_count - acquit_count) &lt;= margin_threshold:
+    EXPAND panel: 23 → 71
+    RESTART A1 with expanded panel
+ELSE:
+    return majority_verdict(opinions)
+</code></pre>
+
+<hr>
+
+<h2>A5 — Judge Eligibility Check</h2>
+
+<p>Source: Rambam, Hilchot Sanhedrin 2:1–3</p>
+<p>Principle: P5 (conflict of interest disqualification)</p>
+
+<pre><code class="language-">
+INPUT: judge j, query q
+DISQUALIFY(j) IF any:
+    j.financial_interest_in(q) == True
+    j.related_to_party(q) == True
+    j.prior_ruling_in_conflicting_capacity(q) == True
+    j.public_prior_position_on(q) == True
+
+IF disqualified:
+    j.recuse()
+    j.disclose_reason()
+    RETURN: cannot participate
+
+TIMING: Must run BEFORE A1. Non-negotiable.
+</code></pre>
+
+<hr>
+
+<h2>A6 — Mandatory Reasoning</h2>
+
+<p>Source: Rambam, Hilchot Sanhedrin 10:8</p>
+<p>Principle: P4 (explainability as obligation)</p>
+
+<pre><code class="language-">
+INPUT: opinion o, judge j
+REQUIRE:
+    o.reasoning != null
+    o.reasoning.cited_source != null
+    o.reasoning.cited_source is inline (not on-request)
+
+IF requirement NOT met:
+    REJECT o
+    REQUEST: j must resubmit with explicit inline basis
+
+TIMING: Applied at output generation, not retrospectively.
+</code></pre>
+
+  <div class="man-header" style="margin-top:2rem;">
+    <span>Halachic Constitutional AI</span>
+    <span>2026-05-21</span>
+    <span>HCAI(1)</span>
+  </div>
+</body>
+</html>
